@@ -1,1 +1,1 @@
-# ProjectHUb
+# ProjectHub
