@@ -21,10 +21,10 @@
   "main": "server.js",
   "scripts": {
     "test": "node server.js",
-    "start":"nodemon src/server.js"
+    "start": "nodemon src/server.js"
   },
   "dependencies": {
-    "@prisma/client": "^7.8.0",
+    "@prisma/client": "^6.19.3",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
@@ -34,7 +34,7 @@
     "jsonwebtoken": "^9.0.3",
     "morgan": "^1.11.0",
     "multer": "^2.2.0",
-    "prisma": "^7.8.0",
+    "prisma": "^6.19.3",
     "winston": "^3.19.0",
     "zod": "^4.4.3"
   },
