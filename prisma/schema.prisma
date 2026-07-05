@@ -14,12 +14,47 @@ datasource db {
 
 
 model User{
-  id      String  @id @default(uuid())
-  name    String
-  email   String  @unique
-  password String
+  id           String  @id @default(uuid())
+  name         String
+  email        String  @unique
+  password     String
   refreshToken String?
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
+  organisationOwned Organisation[]  
+  memberships  OrganisationMember[]
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
 }
 
+model Organisation{
+  id        String   @id  @default(uuid())
+  name      String
+  ownerId   String 
+  owner     User     @relation(fields:[ ownerId], references:[id])
+  members   OrganisationMember[]
+  projects  Project[]
+  createdAt DateTime @default(now())
+}
+
+model OrganisationMember{
+  id String  @id @default(uuid())
+  userId String
+  organisationId String
+  role Role 
+  user User @relation(fields:[userId],references:[id])
+  organisation Organisation @relation(fields:[organisationId],references:[id])
+
+  @@unique([userId,organisationId])
+}
+
+model Project{
+  id String @id @default(uuid())
+  name String
+  description String?
+  organisationId String
+  organisation Organisation @relation(fields:[organisationId],references:[id]) 
+}
+
+enum Role{
+  ORG_ADMIN
+  MEMBER
+}
